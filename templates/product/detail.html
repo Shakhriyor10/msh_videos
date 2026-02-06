@@ -1,0 +1,47 @@
+{% extends "product/base.html" %}
+{% block title %}{{ product.title }} | MSH Videos{% endblock %}
+{% block content %}
+  <div class="row g-5">
+    <div class="col-lg-8">
+      <div class="video-player">
+        <video class="w-100 rounded-4" controls preload="metadata" poster="{{ product.cover.url }}">
+          <source src="{{ product.video.url }}" type="video/mp4">
+          <source src="{{ product.video.url }}" type="video/webm">
+          <source src="{{ product.video.url }}" type="video/ogg">
+          Ваш браузер не поддерживает видео.
+        </video>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card bg-black border-secondary text-light h-100">
+        <div class="card-body">
+          <h1 class="h4 fw-bold">{{ product.title }}</h1>
+          <p class="text-secondary">{{ product.description }}</p>
+          <div class="mb-3">
+            <h2 class="h6 text-uppercase text-secondary">Категории</h2>
+            <div>
+              {% for category in product.categories.all %}
+                <span class="badge rounded-pill bg-secondary">{{ category.name }}</span>
+              {% empty %}
+                <span class="text-secondary">Нет категории.</span>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="mb-3">
+            <h2 class="h6 text-uppercase text-secondary">Теги</h2>
+            <div>
+              {% for tag in product.tags.all %}
+                <span class="badge rounded-pill bg-dark border border-secondary">{{ tag.name }}</span>
+              {% empty %}
+                <span class="text-secondary">Нет тегов.</span>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="text-secondary small">
+            Добавлено: {{ product.added_at|date:"d.m.Y H:i" }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
