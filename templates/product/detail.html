@@ -44,4 +44,34 @@
       </div>
     </div>
   </div>
+
+  <section class="mt-5">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <h2 class="h4 fw-bold">Похожие видео</h2>
+    </div>
+    <div class="row g-4">
+      {% for video in similar_products %}
+        <div class="col-12 col-md-6 col-lg-3">
+          <a class="video-card" href="{% url 'product_detail' video.pk %}">
+            <div class="ratio ratio-16x9 video-preview">
+              <img src="{{ video.cover.url }}" alt="{{ video.title }}" class="video-cover">
+              <video class="video-hover" muted preload="metadata">
+                <source src="{{ video.video.url }}" type="video/mp4">
+              </video>
+            </div>
+            <div class="mt-3">
+              <h3 class="h6 fw-semibold mb-1">{{ video.title }}</h3>
+              <div class="text-secondary small">
+                {% for tag in video.tags.all %}
+                  <span class="badge rounded-pill bg-dark border border-secondary">{{ tag.name }}</span>
+                {% endfor %}
+              </div>
+            </div>
+          </a>
+        </div>
+      {% empty %}
+        <p class="text-secondary">Нет похожих видео по тегам.</p>
+      {% endfor %}
+    </div>
+  </section>
 {% endblock %}
