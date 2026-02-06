@@ -11,7 +11,7 @@
       {% for category in featured_categories %}
         <div class="col-6 col-md-3">
           <a class="category-card" href="/?category={{ category.pk }}#videos">
-            <div class="ratio ratio-1x1">
+            <div class="ratio ratio-16x9">
               <img src="{{ category.photo.url }}" alt="{{ category.name }}" class="category-cover">
             </div>
             <div class="mt-2 fw-semibold text-center">{{ category.name }}</div>
@@ -33,7 +33,7 @@
         {% for category in categories %}
           <div class="col-6 col-md-3">
             <a class="category-card" href="/?category={{ category.pk }}#videos">
-              <div class="ratio ratio-1x1">
+              <div class="ratio ratio-16x9">
                 <img src="{{ category.photo.url }}" alt="{{ category.name }}" class="category-cover">
               </div>
               <div class="mt-2 fw-semibold text-center">{{ category.name }}</div>
